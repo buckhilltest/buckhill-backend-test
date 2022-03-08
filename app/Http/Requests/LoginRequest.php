@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Actions\PasswordRules;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LoginRequest extends FormRequest
@@ -25,7 +26,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => ['bail', 'required', 'email'],
-            'password' => ['required', 'string', 'min:8'],
+            'password' => ['required', PasswordRules::getRules()],
         ];
     }
 }
