@@ -8,10 +8,7 @@ abstract class PasswordRules
 {
     public static function getRules(): Password
     {
-        return Password::min(8)
-            ->mixedCase()
-            ->letters()
-            ->numbers()
-            ->symbols();
+        return Password::min(5)
+            ->letters();
     }
 }
