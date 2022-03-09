@@ -20,7 +20,7 @@ class UserFactory extends Factory
             'is_admin' => false,
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => '$2a$12$H67YfGvV84BwWP9GEEPiR.ktHQSU2i9/7u98TKDgSCCB7GONiVy1y', // userpassword
             'phone_number' => $this->faker->phoneNumber()
         ];
     }
