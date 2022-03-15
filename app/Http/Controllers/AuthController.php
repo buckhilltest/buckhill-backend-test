@@ -10,11 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
-    }
-
     public function login(LoginRequest $request): JsonResponse
     {
         $data = $request->validated();
@@ -22,6 +17,11 @@ class AuthController extends Controller
         if (!$token = auth()->attempt($data)) {
             return response()->json(['error' => 'Unauthorized'], Response::HTTP_UNAUTHORIZED);
         }
+
+        auth()->user()->update([
+            'last_login_at' => now()
+        ]);
+
         return $this->createNewToken($token);
     }
 
@@ -44,11 +44,6 @@ class AuthController extends Controller
     {
         auth()->logout();
         return response()->json(['message' => 'User successfully signed out']);
-    }
-
-    public function userProfile(): JsonResponse
-    {
-        return response()->json(auth()->user());
     }
 
     public function refresh(): JsonResponse
