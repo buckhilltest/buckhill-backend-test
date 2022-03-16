@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,6 @@ Route::group(['middleware' => ['auth', 'api'], 'prefix' => 'v1'], function () {
         Route::put('/user-edit/{uuid}', [AdminController::class, 'userEdit']);
         Route::delete('/user-delete/{uuid}', [AdminController::class, 'userDelete']);
     });
+
+    Route::apiResource('products', ProductController::class);
 });
