@@ -29,6 +29,7 @@ class RegisterRequest extends FormRequest
             'last_name' => ['required', 'string', 'between:2,100'],
             'is_admin' => ['nullable', 'boolean'],
             'email' => ['required', 'string', 'email', 'max:100', 'unique:users'],
+            'phone_number' => ['required', 'string'],
             'password' => ['required', 'confirmed', PasswordRules::getRules()],
         ];
     }
