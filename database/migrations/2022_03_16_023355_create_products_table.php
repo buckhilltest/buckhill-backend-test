@@ -15,7 +15,16 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id')
+                ->constrained();
+            $table->string('title');
+            $table->char('uuid', 36);
+            $table->double('price', 12, 2);
+            $table->text('description');
+            $table->json('metadata')
+                ->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
