@@ -15,7 +15,10 @@ class AdminController extends Controller
 
     public function userListing(): JsonResponse
     {
-        return response()->json(User::all());
+        $users = User::notAdmin()
+            ->get();
+
+        return response()->json($users);
     }
 
     public function userEdit(UpdateUser $request, $uuid): JsonResponse
@@ -23,6 +26,10 @@ class AdminController extends Controller
         $data = $request->validated();
 
         $user = User::where('uuid', $uuid)->firstOrFail();
+
+        if ($user->isAdmin()) {
+            return $this->invalidateUnauthorized();
+        }
 
         if ($user->update($data)) {
             return response()->json($user->fresh());
@@ -36,6 +43,10 @@ class AdminController extends Controller
     public function userDelete($uuid): JsonResponse
     {
         $user = User::where('uuid', $uuid)->firstOrFail();
+
+        if ($user->isAdmin()) {
+            return $this->invalidateUnauthorized();
+        }
 
         if ($user->email === 'admin@buckhill.co.uk') {
             return response()->json([
@@ -52,5 +63,13 @@ class AdminController extends Controller
         return response()->json([
             'message' => 'Error deleting user'
         ], 500);
+    }
+
+
+    private function invalidateUnauthorized(): JsonResponse
+    {
+        return response()->json([
+            'message' => 'Invalid action for admin accounts'
+        ], 401);
     }
 }

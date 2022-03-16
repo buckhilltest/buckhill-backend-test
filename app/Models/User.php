@@ -63,4 +63,14 @@ class User extends Authenticatable implements JWTSubject
             'uuid' => $this->uuid
         ];
     }
+
+    public function scopeNotAdmin($query)
+    {
+        return $query->where('is_admin', false);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->is_admin === true;
+    }
 }
