@@ -27,7 +27,7 @@ class AdminController extends Controller
 
         $user = User::where('uuid', $uuid)->firstOrFail();
 
-        if ($user->isAdmin()) {
+        if ($user->isAdmin() && $user->id !== auth()->id()) {
             return $this->invalidateUnauthorized();
         }
 
@@ -51,7 +51,7 @@ class AdminController extends Controller
         if ($user->email === 'admin@buckhill.co.uk') {
             return response()->json([
                 'message' => 'You can not delete the master user'
-            ], 400);
+            ], 401);
         }
 
         if ($user->delete()) {
