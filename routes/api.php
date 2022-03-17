@@ -17,18 +17,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group(['middleware' => ['auth', 'api'], 'prefix' => 'v1'], function () {
-    Route::prefix('admin')->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/login', [AuthController::class, 'login'])
+            ->name('login')
             ->withoutMiddleware(Authenticate::class);
 
-        Route::post('/create', [AuthController::class, 'register']);
-        Route::post('/logout', [AuthController::class, 'logout']);
+        Route::post('/create', [AuthController::class, 'register'])
+            ->name('register');
+        Route::post('/logout', [AuthController::class, 'logout'])
+            ->name('logout');
         Route::post('/refresh', [AuthController::class, 'refresh']);
-        Route::get('/user-profile', [AdminController::class, 'userProfile']);
-        Route::get('/user-listing', [AdminController::class, 'userListing']);
-        Route::put('/user-edit/{uuid}', [AdminController::class, 'userEdit']);
-        Route::delete('/user-delete/{uuid}', [AdminController::class, 'userDelete']);
+        Route::get('/user-profile', [AdminController::class, 'userProfile'])
+            ->name('user-profile');
+        Route::get('/user-listing', [AdminController::class, 'userListing'])
+            ->name('user-listing');
+        Route::put('/user-edit/{uuid}', [AdminController::class, 'userEdit'])
+            ->name('user-editing');
+        Route::delete('/user-delete/{uuid}', [AdminController::class, 'userDelete'])
+            ->name('user-delete');
     });
 
-    Route::apiResource('products', ProductController::class);
+    Route::apiResource('products', ProductController::class, [
+        'parameters' => [
+            'products' => 'uuid'
+        ]
+    ]);
 });
