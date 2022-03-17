@@ -18,9 +18,10 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorized'], Response::HTTP_UNAUTHORIZED);
         }
 
-        auth()->user()->update([
-            'last_login_at' => now()
-        ]);
+        User::where('id', auth()->id())
+            ->update([
+                'last_login_at' => now()
+            ]);
 
         return $this->createNewToken($token);
     }
@@ -51,12 +52,16 @@ class AuthController extends Controller
         return $this->createNewToken(auth()->refresh());
     }
 
+    /**
+     * @param  string|true  $token
+     * @return JsonResponse
+     */
     protected function createNewToken($token): JsonResponse
     {
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60,
+            'expires_in' => 3600,
             'user' => auth()->user()
         ]);
     }

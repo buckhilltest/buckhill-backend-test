@@ -35,7 +35,7 @@ class StoreProduct extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'metadata' => json_encode($this->metadata) ?? null,
+            'metadata' => json_encode($this->metadata),
         ]);
     }
 }

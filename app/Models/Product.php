@@ -25,7 +25,7 @@ class Product extends Model
         'price' => 'decimal:2'
     ];
 
-    public function getMetadataAttribute($value)
+    public function getMetadataAttribute(mixed $value): mixed
     {
         return json_decode($value);
     }

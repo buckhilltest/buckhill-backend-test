@@ -21,7 +21,7 @@ class AdminController extends Controller
         return response()->json($users);
     }
 
-    public function userEdit(UpdateUser $request, $uuid): JsonResponse
+    public function userEdit(UpdateUser $request, string $uuid): JsonResponse
     {
         $data = $request->validated();
 
@@ -40,7 +40,7 @@ class AdminController extends Controller
         ], 500);
     }
 
-    public function userDelete($uuid): JsonResponse
+    public function userDelete(string $uuid): JsonResponse
     {
         $user = User::where('uuid', $uuid)->firstOrFail();
 
