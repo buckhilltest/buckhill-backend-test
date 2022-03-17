@@ -1,0 +1,517 @@
+{
+  "info": {
+    "_postman_id": "9c502ac3-38f4-4b4b-b12e-3bb0a8ac4a62",
+    "name": "Buckhill Backend Test",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Store Product",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"category_id\": 1,\n    \"title\": \"My Product Title\",\n    \"price\": 100.00,\n    \"description\": \"My Product Description\",\n    \"metadata\": {\n        \"brand\": \"uuid from brands\",\n        \"image\": \"uuid from images\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/v1/products/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "products",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8000/api/v1/products/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "products",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Show Product",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/api/v1/products/cb423c42-5ee8-4d06-8af7-13a159dcbdac",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "products",
+                "cb423c42-5ee8-4d06-8af7-13a159dcbdac"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Product",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"category_id\": 1,\n    \"title\": \"My Product Title Updated\",\n    \"price\": \"100.00\",\n    \"description\": \"My Product Description\",\n    \"metadata\": {\n        \"brand\": \"uuid from brands\", \"image\": \"uuid from images\"\n    }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/v1/products/cb423c42-5ee8-4d06-8af7-13a159dcbdac",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "products",
+                "cb423c42-5ee8-4d06-8af7-13a159dcbdac"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Product",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/api/v1/products/cb423c42-5ee8-4d06-8af7-13a159dcbdac",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "products",
+                "cb423c42-5ee8-4d06-8af7-13a159dcbdac"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2FkbWluL2xvZ2luIiwiaWF0IjoxNjQ3NDU5NTg4LCJleHAiOjE2NDc0NjMxODgsIm5iZiI6MTY0NzQ1OTU4OCwianRpIjoiQ0F3aWVIU041WmlENDBFTyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3IiwidXVpZCI6IjFiNDc0ZTdlLWZiODQtNGIzNy04NjIyLWI1ZTJmYjFlOGE1OSJ9.K3BevUThA4W5N1jvxCX-zzOnuleeWDIhjkQmeZBCV2U",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"admin@buckhill.co.uk\",\n    \"password\": \"admin\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/v1/admin/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2FkbWluL2xvZ2luIiwiaWF0IjoxNjQ3NDY3OTI0LCJleHAiOjE2NDc0NzE1MjQsIm5iZiI6MTY0NzQ2NzkyNCwianRpIjoid3NKcjJlaFlOZWxleEpONiIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3IiwidXVpZCI6IjFiNDc0ZTdlLWZiODQtNGIzNy04NjIyLWI1ZTJmYjFlOGE1OSJ9.PCZrZmNHnuijaBn7jowjJyD_Vbr20phSCyLZW7gj9wg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/api/v1/admin/logout",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "User Listing",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2FkbWluL2xvZ2luIiwiaWF0IjoxNjQ3NDY2NTMxLCJleHAiOjE2NDc0NzAxMzEsIm5iZiI6MTY0NzQ2NjUzMSwianRpIjoidVpSYkNwQUFvVktiMHVCNiIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3IiwidXVpZCI6IjFiNDc0ZTdlLWZiODQtNGIzNy04NjIyLWI1ZTJmYjFlOGE1OSJ9.GoHCdSBuG88oCrXFuaafIRUfhd5tmoFx6uVoYQx5IJU",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2FkbWluL2xvZ2luIiwiaWF0IjoxNjQ3Mzc3NzM4LCJleHAiOjE2NDczODEzMzgsIm5iZiI6MTY0NzM3NzczOCwianRpIjoiRGdXZG1QRVE0RHZpb29JayIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3IiwidXVpZCI6IjVkMjJlYTVkLTFkZDUtMzFjZi1hZmU1LTgzMmRjOTc0OWE5NSJ9.iG6WN1wQpPxD2hMdmk9e0QAodpuh_vz5uo5eV7MrKiha-x0DHdYoG6xCLt8yLcoaqUYuoC-WK8-QK8Iks617GCwEAN0k5vpXQgwC4GJJo9P5W0tDw9qUCqZr6iDRirK2NjCPWLRbcnvs_4Fz34Ofd0SGRILle2llwywdSbiq2txBwUqKLxJYMKHjEKyrIu4uKPc0VDMwkw4S5sV4ksEMFmV89wTe5YTTujfGE8jFyq1itYBWW3mNtb4SNvVhipWpASkKfV6kU0q9Gw8l45QM0cu953Li8q4fMHWcyj2Qd3nCeRIHp6Ul2NO9rxNgU-wGuj4lVXLzEGE-RCiF507TiA",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/api/v1/admin/user-listing",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "user-listing"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User Editing",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"first_name\": \"Samuel Windler\",\n    \"last_name\": \"Mr. Ryley Weissnat IV França\",\n    \"is_admin\": 1,\n    \"email\": \"admin@buckhill.co.uk\",\n    \"phone_number\": \"5583988992000\",\n    \"is_marketing\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/v1/admin/user-edit/5d22ea5d-1dd5-31cf-afe5-832dc9749a95",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "user-edit",
+                "5d22ea5d-1dd5-31cf-afe5-832dc9749a95"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User Create",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2FkbWluL2xvZ2luIiwiaWF0IjoxNjQ3Mzk4MjI5LCJleHAiOjE2NDc0MDE4MjksIm5iZiI6MTY0NzM5ODIyOSwianRpIjoiRmpndHBxMzRqQk5CY0VKeSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3IiwidXVpZCI6IjVkMjJlYTVkLTFkZDUtMzFjZi1hZmU1LTgzMmRjOTc0OWE5NSJ9.QZiAMvR2mBNvVhvk1paVGN1YDGx-jwzQQSUcUHWyJAo",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"first_name\": \"Samuel\",\n    \"last_name\": \"França\",\n    \"email\": \"samuelhenriques2000+1@gmail.com\",\n    \"phone_number\": \"5583988992000\",\n    \"password\": \"admin\",\n    \"password_confirmation\": \"admin\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8000/api/v1/admin/create",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "create"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User Delete",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2FkbWluL2xvZ2luIiwiaWF0IjoxNjQ3NDQ4NTc2LCJleHAiOjE2NDc0NTIxNzYsIm5iZiI6MTY0NzQ0ODU3NiwianRpIjoiZ1BrT0VPMjFzbjJNOEVwZCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3IiwidXVpZCI6IjVkMjJlYTVkLTFkZDUtMzFjZi1hZmU1LTgzMmRjOTc0OWE5NSJ9.mpuR2N67UDBPuFZNvIsfML0If8x4aQfR8NvXq0owqww",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8000/api/v1/admin/user-delete/5d22ea5d-1dd5-31cf-afe5-832dc9749a95",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "v1",
+                "admin",
+                "user-delete",
+                "5d22ea5d-1dd5-31cf-afe5-832dc9749a95"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+openapi: 3.0.0
+servers:
+  - description: Buckhill Backend Test API
+    url: http://localhost:8000
+info:
+  version: '0.1'
+  title: Buckhill Backend Test API
+tags:
+  - name: Auth
+    description: Auth endpoints
+  - name: Products
+    description: Products endpoints
+paths:
+  /login:
+    post:
+      tags:
+        - Auth
+      summary: Login into system
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+  /logout:
+    post:
+      tags:
+        - Auth
+      summary: Logout current user
+      security:
+        - BearerAuth: [ ]
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          required: true
+          format: email
+          example: admin@buckhill.co.uk
+        password:
+          type: string
+          required: true
+          example: admin
+    LoginResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          example: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3YxL2FkbWluL2xvZ2luIiwiaWF0IjoxNjQ3NDY3OTI0LCJleHAiOjE2NDc0NzE1MjQsIm5iZiI6MTY0NzQ2NzkyNCwianRpIjoid3NKcjJlaFlOZWxleEpONiIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3IiwidXVpZCI6IjFiNDc0ZTdlLWZiODQtNGIzNy04NjIyLWI1ZTJmYjFlOGE1OSJ9.PCZrZmNHnuijaBn7jowjJyD_Vbr20phSCyLZW7gj9wg
+        token_type:
+          type: string
+          example: bearer
+        expires_in:
+          type: integer
+          example: 3600
